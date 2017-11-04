@@ -46,5 +46,10 @@ public interface StudentMapper
     void updateStudent (@Param("npm") String npm, @Param("name") String name, @Param("gpa") double gpa);
     
     @Select("SELECT course.id_course, name, credits FROM studentcourse JOIN course ON studentcourse.id_course = course.id_course WHERE studentcourse.npm = #{npm}")
+    @Results(value = {
+        	@Result(property="idCourse", column="id_course"),
+        	@Result(property="name", column="name"),
+        	@Result(property="credits", column="credits"),
+        })
     List<CourseModel> selectCourses (@Param("npm") String npm);
 }
